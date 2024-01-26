@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import styles from "./Item.module.css";
+import { useAuth } from "../contexts/AuthContext.jsx";
+import { usePlaces } from "../contexts/PlacesContext.jsx";
 
 const formatDate = (date) =>
   new Intl.DateTimeFormat("en", {
@@ -10,14 +12,13 @@ const formatDate = (date) =>
 
 function Item({ currentPlace }) {
   const { name, date, latitude, longitude, _id } = currentPlace;
-  const isAdmin = true;
+  const { isAdmin, isNotification } = useAuth();
+  const { deleteLocationByAdmin } = usePlaces();
 
   function handleDelete(e) {
     e.preventDefault();
-    // deleteCity(id);
+    deleteLocationByAdmin(latitude, longitude);
   }
-
-  // console.log(city);
 
   return (
     <li>
@@ -29,7 +30,7 @@ function Item({ currentPlace }) {
       >
         <h3 className={styles.name}>{name}</h3>
         <time className={styles.date}>({formatDate(date)})</time>
-        {isAdmin && (
+        {isAdmin && !isNotification &&  (
           <button className={styles.deleteBtn} onClick={handleDelete}>
             x
           </button>

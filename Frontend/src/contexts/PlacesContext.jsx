@@ -158,6 +158,7 @@ function PlacesProvider({ children }) {
       console.log(res);
       dispatch({ type: "loading" });
       await fetchPlaces();
+      await fetchReqLocations();
     } catch {
       dispatch({
         type: "rejected",
@@ -187,6 +188,57 @@ function PlacesProvider({ children }) {
       dispatch({
         type: "rejected",
         payload: "There is an error in Pinning Location...",
+      });
+    } finally {
+      dispatch({ type: "stopLoading" });
+    }
+  }
+
+  async function deleteLocationByAdmin(latitude, longitude) {
+    dispatch({ type: "loading" });
+    try {
+      const Response = await fetch(`${BASE_URL}api/admin/deletePlace`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: localStorage.getItem("token"),
+        },
+        body: JSON.stringify({ latitude, longitude }),
+      });
+      const res = await Response.json();
+      console.log(res);
+      await fetchPlaces();
+    } catch {
+      dispatch({
+        type: "rejected",
+        payload: "There is an error in Deleting Location...",
+      });
+    } finally {
+      dispatch({ type: "stopLoading" });
+    }
+  }
+
+  async function rejectRequestByAdmin(latitude, longitude) {
+    dispatch({ type: "loading" });
+    try {
+      const Response = await fetch(
+        `${BASE_URL}api/admin/deleteuserlocationupdates`,
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: localStorage.getItem("token"),
+          },
+          body: JSON.stringify({ latitude, longitude }),
+        }
+      );
+      const res = await Response.json();
+      console.log(res);
+      await fetchReqLocations();
+    } catch {
+      dispatch({
+        type: "rejected",
+        payload: "There is an error in Deleting Requested Location...",
       });
     } finally {
       dispatch({ type: "stopLoading" });
@@ -311,6 +363,8 @@ function PlacesProvider({ children }) {
         pinLocationIcon,
         pinLocation,
         requestedLocations,
+        rejectRequestByAdmin,
+        deleteLocationByAdmin,
         fetchReqLocations,
         fetchPlaces,
         addPlace,

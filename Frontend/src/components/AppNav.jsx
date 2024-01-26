@@ -1,10 +1,17 @@
 import { NavLink } from "react-router-dom";
 import styles from "./AppNav.module.css";
+import { useAuth } from "../contexts/AuthContext";
 
 function AppNav() {
+  const { setIsNotification } = useAuth();
+
+  function handleClick() {
+    setIsNotification(false);
+  }
+
   return (
     <nav className={styles.nav}>
-      <ul>
+      <ul onClick={handleClick}>
         <li>
           <NavLink to="all">All</NavLink>
         </li>

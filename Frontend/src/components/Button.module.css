@@ -15,6 +15,12 @@
   color: var(--color-dark--1);
 }
 
+.danger {
+  font-weight: 700;
+  background-color: lightcoral;
+  color: var(--color-dark--1);
+}
+
 .back {
   font-weight: 600;
   background: none;

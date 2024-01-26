@@ -129,6 +129,8 @@ function Map() {
         scrollWheelZoom={true}
         className={styles.map}
       >
+        <Marker icon={presentLocationIcon} position={mapPostion}></Marker>
+
         {route && showPolyLine && (
           <Polyline
             positions={route.map((coord) => [coord[1], coord[0]])}
@@ -167,7 +169,10 @@ function Map() {
           ></Marker>
         )}
         {places.map((place) => {
-          const icon = getMarkerIcon(place.type);
+          const icon =
+            place.latitude !== mapPostion[0]
+              ? getMarkerIcon(place.type)
+              : presentLocationIcon;
           return (
             <Marker
               icon={icon}
@@ -199,7 +204,6 @@ function Map() {
           );
         })}
         <ChangeCenter position={mapPostion} />
-        <Marker icon={presentLocationIcon} position={mapPostion}></Marker>
         <DetectClick />
       </MapContainer>
     </div>

@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 import styles from "./User.module.css";
 import { useEffect } from "react";
@@ -12,14 +12,13 @@ const FAKE_USER = {
 };
 
 function User() {
-  const { user, logout, isAdmin, setReqNav, setIsNotification } = useAuth();
+  const { user, logout, isAdmin, setIsNotification } = useAuth();
   const navigate = useNavigate();
   const { fetchReqLocations } = usePlaces();
 
   function handleNotification() {
     fetchReqLocations();
-    setReqNav((curr) => !curr);
-    setIsNotification((curr) => !curr);
+    setIsNotification(true);
   }
 
   function handleClick() {
@@ -30,17 +29,24 @@ function User() {
   return (
     <div className={styles.user}>
       {isAdmin && (
-        <button
-          type="button"
-          class="btn btn-primary focus"
-          onClick={handleNotification}
-        >
-          Notifications
-        </button>
+        <NavLink to="requestedLocations">
+          <button
+            type="button"
+            className="btn btn-primary focus"
+            onClick={handleNotification}
+          >
+            Notifications
+          </button>
+        </NavLink>
       )}
+
       <img src={user.avatar} alt={user.name} />
       <span>Welcome, {user.name}</span>
-      <button type="button" class="btn btn-primary focus" onClick={handleClick}>
+      <button
+        type="button"
+        className="btn btn-primary focus"
+        onClick={handleClick}
+      >
         Logout
       </button>
     </div>
