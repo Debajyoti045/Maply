@@ -218,6 +218,30 @@ function PlacesProvider({ children }) {
     }
   }
 
+  async function pinDeleteByUser(latitude, longitude) {
+    dispatch({ type: "loading" });
+    try {
+      const Response = await fetch(`${BASE_URL}api/user/deletepinlocation`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: localStorage.getItem("token"),
+        },
+        body: JSON.stringify({ latitude, longitude }),
+      });
+      const res = await Response.json();
+      console.log(res);
+      await getPinLocation();
+    } catch {
+      dispatch({
+        type: "rejected",
+        payload: "There is an error in Deleting Location...",
+      });
+    } finally {
+      dispatch({ type: "stopLoading" });
+    }
+  }
+
   async function rejectRequestByAdmin(latitude, longitude) {
     dispatch({ type: "loading" });
     try {
@@ -348,7 +372,6 @@ function PlacesProvider({ children }) {
     iconUrl: "https://cdn-icons-png.flaticon.com/128/149/149059.png",
     iconSize: [38, 38],
   });
-  
 
   // console.log(currentPlace);
   // console.log(requestedLocations);
@@ -370,6 +393,7 @@ function PlacesProvider({ children }) {
         otherLocationIcon,
         pinLocation,
         requestedLocations,
+        pinDeleteByUser,
         rejectRequestByAdmin,
         deleteLocationByAdmin,
         fetchReqLocations,

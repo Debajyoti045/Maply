@@ -47,6 +47,7 @@ function Map() {
     playgroundLocationIcon,
     departmentLocationIcon,
     otherLocationIcon,
+    pinDeleteByUser,
   } = usePlaces();
   const { isAdmin } = useAuth();
 
@@ -113,6 +114,10 @@ function Map() {
     }
   }
 
+  function handlePinDelete(oneLoc) {
+    pinDeleteByUser(oneLoc.latitude, oneLoc.longitude);
+  }
+
   return (
     <div className={`${styles.mapContainer}`}>
       <Button
@@ -155,8 +160,15 @@ function Map() {
                 </Tooltip>
                 <Popup>
                   <div>
-                    <span style={{ color: "yellow" }}>{oneLoc.name}</span>
-                    <br />
+                    <div>
+                      <i
+                        className="fa-solid fa-trash-can"
+                        onClick={() => handlePinDelete(oneLoc)}
+                      ></i>
+                      <span style={{ color: "yellow" }} className="mx-3">
+                        {oneLoc.name}
+                      </span>
+                    </div>
                     <span>{oneLoc.message}</span>
                   </div>
                 </Popup>
@@ -193,7 +205,7 @@ function Map() {
                   <img
                     src="https://i.ytimg.com/vi/iCLoSqlTmyM/maxresdefault.jpg"
                     alt="Image"
-                    style={{ width: "200px", height: "200px" }}
+                    style={{ width: "100px", height: "100px" }}
                   />
                   <span>{place.name}</span>
                   <Button type="primary" onClick={handleCurrentLocation}>
