@@ -1,0 +1,28 @@
+import { NavLink } from "react-router-dom";
+import styles from "./AppNav.module.css";
+
+function AppNav() {
+  return (
+    <nav className={styles.nav}>
+      <ul>
+        <li>
+          <NavLink to="all">All</NavLink>
+        </li>
+        <li>
+          <NavLink to="departments">Departments</NavLink>
+        </li>
+        <li>
+          <NavLink to="restaurants">Restaurants</NavLink>
+        </li>
+        <li>
+          <NavLink to="hostels">Hostels</NavLink>
+        </li>
+        <li>
+          <NavLink to="playgrounds">PlayGrounds</NavLink>
+        </li>
+      </ul>
+    </nav>
+  );
+}
+
+export default AppNav;
