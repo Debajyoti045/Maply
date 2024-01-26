@@ -339,10 +339,16 @@ function PlacesProvider({ children }) {
     iconSize: [38, 38],
   });
 
+  const otherLocationIcon = new Icon({
+    iconUrl: "https://cdn-icons-png.flaticon.com/128/5817/5817144.png",
+    iconSize: [38, 38],
+  });
+
   const pinLocationIcon = new Icon({
     iconUrl: "https://cdn-icons-png.flaticon.com/128/149/149059.png",
     iconSize: [38, 38],
   });
+  
 
   // console.log(currentPlace);
   // console.log(requestedLocations);
@@ -361,6 +367,7 @@ function PlacesProvider({ children }) {
         restaurantLocationIcon,
         playgroundLocationIcon,
         pinLocationIcon,
+        otherLocationIcon,
         pinLocation,
         requestedLocations,
         rejectRequestByAdmin,

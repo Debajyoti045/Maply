@@ -27,6 +27,9 @@ function AppNav() {
         <li>
           <NavLink to="playgrounds">PlayGrounds</NavLink>
         </li>
+        <li>
+          <NavLink to="others">Others</NavLink>
+        </li>
       </ul>
     </nav>
   );

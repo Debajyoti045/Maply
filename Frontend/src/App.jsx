@@ -19,6 +19,7 @@ import Departments from "./components/Departments.jsx";
 import Form from "./components/Form.jsx";
 import RequestPlaces from "./components/RequestPlaces.jsx";
 import { useState } from "react";
+import Others from "./components/Others.jsx";
 
 function App() {
   return (
@@ -44,6 +45,8 @@ function App() {
               <Route path="all/:id" element={<PlaceDetail />} />
               <Route path="departments" element={<Departments />} />
               <Route path="departments/:id" element={<PlaceDetail />} />
+              <Route path="others" element={<Others />} />
+              <Route path="others/:id" element={<Others />} />
               <Route path="hostels" element={<Hostels />} />
               <Route path="hostels/:id" element={<PlaceDetail />} />
               <Route path="restaurants" element={<Restaurants />} />

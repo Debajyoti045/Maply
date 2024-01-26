@@ -111,6 +111,7 @@ function Form() {
           <option value="hostel">Hostel</option>
           <option value="restaurant">Restaurant</option>
           <option value="playground">Playground</option>
+          <option value="others">Other</option>
         </select>
       </div>
 

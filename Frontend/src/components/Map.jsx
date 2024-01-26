@@ -46,6 +46,7 @@ function Map() {
     restaurantLocationIcon,
     playgroundLocationIcon,
     departmentLocationIcon,
+    otherLocationIcon,
   } = usePlaces();
   const { isAdmin } = useAuth();
 
@@ -108,7 +109,7 @@ function Map() {
       case "department":
         return departmentLocationIcon;
       default:
-        return null;
+        return otherLocationIcon;
     }
   }
 
