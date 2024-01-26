@@ -203,7 +203,7 @@ function Map() {
               <Popup>
                 <div>
                   <img
-                    src="https://i.ytimg.com/vi/iCLoSqlTmyM/maxresdefault.jpg"
+                    src={place.imageUrl[0]?place.imageUrl[0]:"https://qph.cf2.quoracdn.net/main-qimg-cfb6d15975e70f0dc4e40b43d125bc67-pjlq"}
                     alt="Image"
                     style={{ width: "100px", height: "100px" }}
                   />
