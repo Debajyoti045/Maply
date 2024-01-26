@@ -10,7 +10,7 @@ import {
 const PlacesContext = createContext();
 
 const initialState = {
-  places: [],
+  // places: [],
   isLoading: false,
   currentPlace: {},
   pinLocation: [],
@@ -34,13 +34,13 @@ function reducer(state, action) {
       return {
         ...state,
         isLoading: false,
-        places: action.payload,
+        // places: action.payload,
       };
     case "places/deleted":
       return {
         ...state,
         isLoading: false,
-        places: state.places.filter((place) => place.id !== action.payload),
+        // places: state.places.filter((place) => place.id !== action.payload),
         currentPlace: {},
       };
     case "getPinLocation":
@@ -75,11 +75,20 @@ const BASE_URL = "http://localhost:3000/";
 
 function PlacesProvider({ children }) {
   const [
-    { places, currentPlace, isLoading, error, pinLocation, requestedLocations },
+    { currentPlace, isLoading, error, pinLocation, requestedLocations },
     dispatch,
   ] = useReducer(reducer, initialState);
+  const [places, setPlaces] = useState([]);
 
   const [searchQuery, setSearchQuery] = useState("");
+  const searchedPlaces =
+    searchQuery.length > 0
+      ? places.filter((place) =>
+          `${place.name} ${place.type}`
+            .toLowerCase()
+            .includes(searchQuery.toLowerCase())
+        )
+      : places;
 
   async function fetchPlaces() {
     dispatch({ type: "loading" });
@@ -92,7 +101,8 @@ function PlacesProvider({ children }) {
       });
       const res = await response.json();
       console.log(res.msg);
-      dispatch({ type: "places/loaded", payload: res.msg });
+      // dispatch({ type: "places/loaded", payload: res.msg });
+      setPlaces(res.msg);
     } catch {
       dispatch({
         type: "rejected",
@@ -375,10 +385,12 @@ function PlacesProvider({ children }) {
 
   // console.log(currentPlace);
   // console.log(requestedLocations);
+
   return (
     <PlacesContext.Provider
       value={{
-        places,
+        places: searchedPlaces,
+        setPlaces,
         isLoading,
         error,
         searchQuery,

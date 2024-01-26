@@ -181,7 +181,7 @@ function Map() {
             position={geolocationPosition}
           ></Marker>
         )}
-        {places.map((place) => {
+        {places?.map((place) => {
           const icon =
             place.latitude !== mapPostion[0]
               ? getMarkerIcon(place.type)

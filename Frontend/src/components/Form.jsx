@@ -26,7 +26,7 @@ function Form() {
   const navigate = useNavigate();
 
   const { isAdmin } = useAuth();
-  const { addPlace, fetchPlaces, places } = usePlaces();
+  const { addPlace } = usePlaces();
 
   useEffect(
     function () {
@@ -91,14 +91,6 @@ function Form() {
         />
       </div>
       <div className={styles.row}>
-        {/* <label htmlFor="type">
-          Write Type (e.g: 'department, 'hostel', 'restaurant', 'playground')
-        </label>
-        <input
-          id="cityName"
-          onChange={(e) => setType(e.target.value)}
-          value={type}
-        /> */}
         <label htmlFor="type">Choose Type</label>
         <select
           onChange={(e) => setType(e.target.value)}

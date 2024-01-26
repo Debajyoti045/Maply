@@ -46,7 +46,7 @@ export default function Login() {
           value={userType}
           onChange={(e) => setUserType(e.target.value)}
         >
-          <option value="user" selected>User</option>
+          <option value="user">User</option>
           <option value="admin">Admin</option>
         </select>
         <div className={styles.row}>
