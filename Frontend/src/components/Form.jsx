@@ -85,6 +85,7 @@ function Form() {
         <label htmlFor="name">Place name</label>
         <input
           id="name"
+          required
           onChange={(e) => setName(e.target.value)}
           value={name}
         />
@@ -102,6 +103,7 @@ function Form() {
         <select
           onChange={(e) => setType(e.target.value)}
           value={type}
+          required
           id="cars"
         >
           <option>--Select Type--</option>
@@ -116,6 +118,7 @@ function Form() {
         <label htmlFor="notes">Give some message about {name}</label>
         <textarea
           id="notes"
+          required
           onChange={(e) => setMessage(e.target.value)}
           value={message}
         />

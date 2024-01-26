@@ -6,19 +6,28 @@ import { useNavigate } from "react-router-dom";
 import PageNav from "../components/PageNav";
 
 function SignUp() {
-  const [email, setEmail] = useState("jack@example.com");
-  const [name, setName] = useState("VidyaSagar");
-  const [password, setPassword] = useState("qwerty");
+  const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
+  const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
   const { createUser } = useAuth();
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
     if (email && password && name) {
       console.log(name);
-      createUser(name, email, password);
-      navigate("/login");
+      const res = await createUser(name, email, password);
+      if(res.error){
+        alert(res.error)
+        setEmail("");
+        setName("");
+        setPassword("");
+      }
+      else  {
+        alert("User created Successfully!")
+        navigate("/login");
+      }
     }
   }
   return (
@@ -30,6 +39,9 @@ function SignUp() {
           <input
             type="name"
             id="name"
+            placeholder="Enter your name"
+            minLength={3}
+            required
             onChange={(e) => setName(e.target.value)}
             value={name}
           />
@@ -39,6 +51,8 @@ function SignUp() {
           <input
             type="email"
             id="email"
+            required
+            placeholder="Enter your Email Address"
             onChange={(e) => setEmail(e.target.value)}
             value={email}
           />
@@ -49,6 +63,9 @@ function SignUp() {
           <input
             type="password"
             id="password"
+            required
+            minLength={7}
+            placeholder="Enter your password"
             onChange={(e) => setPassword(e.target.value)}
             value={password}
           />

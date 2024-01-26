@@ -9,8 +9,8 @@ export default function Login() {
   const navigate = useNavigate();
   // PRE-FILL FOR DEV PURPOSES
   const { loginAdmin } = useAuth();
-  const [email, setEmail] = useState("vs@gmail.com");
-  const [password, setPassword] = useState("qwertyuiop");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const { login, isAuthenticated } = useAuth();
   const [userType, setUserType] = useState("user");
 
@@ -54,8 +54,10 @@ export default function Login() {
           <input
             type="email"
             id="email"
+            placeholder="Enter your Email Address"
             onChange={(e) => setEmail(e.target.value)}
             value={email}
+            required
           />
         </div>
 
@@ -64,6 +66,9 @@ export default function Login() {
           <input
             type="password"
             id="password"
+            minLength={7}
+            placeholder="Enter your password"
+            required
             onChange={(e) => setPassword(e.target.value)}
             value={password}
           />

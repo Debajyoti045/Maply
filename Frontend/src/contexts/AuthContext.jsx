@@ -59,8 +59,9 @@ function AuthProvider({ children }) {
       });
       await fetchPlaces();
       await getPinLocation();
+      alert("Logged In Successfully!")
     } else {
-      console.log(res.msg);
+      alert(res.msg)
     }
   }
   async function loginAdmin(email, password) {
@@ -83,9 +84,9 @@ function AuthProvider({ children }) {
         },
       });
       await fetchPlaces();
-      console.log(res.msg);
+      alert("Logged in successfully")
     } else {
-      console.log(res.msg);
+      alert(res.msg)
     }
   }
 
@@ -105,6 +106,7 @@ function AuthProvider({ children }) {
     });
     const res = await Response.json();
     console.log(res);
+    return res;
   }
 
   function logout() {
