@@ -1,6 +1,5 @@
 import { Icon } from "leaflet";
 import {
-  useEffect,
   createContext,
   useContext,
   useReducer,
@@ -10,7 +9,6 @@ import {
 const PlacesContext = createContext();
 
 const initialState = {
-  // places: [],
   isLoading: false,
   currentPlace: {},
   pinLocation: [],
@@ -34,13 +32,11 @@ function reducer(state, action) {
       return {
         ...state,
         isLoading: false,
-        // places: action.payload,
       };
     case "places/deleted":
       return {
         ...state,
         isLoading: false,
-        // places: state.places.filter((place) => place.id !== action.payload),
         currentPlace: {},
       };
     case "getPinLocation":
@@ -101,7 +97,6 @@ function PlacesProvider({ children }) {
       });
       const res = await response.json();
       console.log(res.msg);
-      // dispatch({ type: "places/loaded", payload: res.msg });
       setPlaces(res.msg);
     } catch {
       dispatch({
@@ -383,8 +378,6 @@ function PlacesProvider({ children }) {
     iconSize: [38, 38],
   });
 
-  // console.log(currentPlace);
-  // console.log(requestedLocations);
 
   return (
     <PlacesContext.Provider

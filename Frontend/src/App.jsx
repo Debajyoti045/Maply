@@ -8,7 +8,7 @@ import ProtectedRoutes from "./components/ProtectedRoutes.jsx";
 
 import Login from "./pages/Login.jsx";
 import { PlacesProvider } from "./contexts/PlacesContext.jsx";
-import { AuthProvider, useAuth } from "./contexts/AuthContext.jsx";
+import { AuthProvider } from "./contexts/AuthContext.jsx";
 import SignUp from "./pages/SignUp.jsx";
 import AllList from "./components/AllList.jsx";
 import PlaceDetail from "./components/PlaceDetail.jsx";
@@ -18,7 +18,6 @@ import Playgrounds from "./components/Playgrounds.jsx";
 import Departments from "./components/Departments.jsx";
 import Form from "./components/Form.jsx";
 import RequestPlaces from "./components/RequestPlaces.jsx";
-import { useState } from "react";
 import Others from "./components/Others.jsx";
 
 function App() {

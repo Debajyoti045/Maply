@@ -4,7 +4,6 @@ import Logo from "./Logo";
 import styles from "./Sidebar.module.css";
 import SearchPosts from "./SearchQuery";
 import { useAuth } from "../contexts/AuthContext";
-import Button from "./Button";
 import ReqNav from "./ReqNav";
 
 function Sidebar() {

@@ -1,8 +1,7 @@
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import styles from "./Map.module.css";
 import "leaflet/dist/leaflet.css";
 import axios from "axios";
-import MarkerClusterGroup from "react-leaflet-cluster";
 import {
   MapContainer,
   Marker,
@@ -204,7 +203,7 @@ function Map() {
                 <div>
                   <img
                     src={place.imageUrl[0]?place.imageUrl[0]:"https://qph.cf2.quoracdn.net/main-qimg-cfb6d15975e70f0dc4e40b43d125bc67-pjlq"}
-                    alt="Image"
+                    alt="place"
                     style={{ width: "100px", height: "100px" }}
                   />
                   <span>{place.name}</span>

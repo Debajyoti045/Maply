@@ -1,7 +1,6 @@
 import Spinner from "./Spinner";
 import { usePlaces } from "../contexts/PlacesContext";
 import List from "./List";
-import { useEffect } from "react";
 
 function AllList() {
   const { places, isLoading } = usePlaces();
