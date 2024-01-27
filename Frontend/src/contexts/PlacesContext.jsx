@@ -1,10 +1,5 @@
 import { Icon } from "leaflet";
-import {
-  createContext,
-  useContext,
-  useReducer,
-  useState,
-} from "react";
+import { createContext, useContext, useReducer, useState } from "react";
 
 const PlacesContext = createContext();
 
@@ -67,7 +62,8 @@ function reducer(state, action) {
   }
 }
 
-const BASE_URL = "http://localhost:3000/";
+// const BASE_URL = "http://localhost:3000/";
+const BASE_URL = "https://maply.onrender.com/";
 
 function PlacesProvider({ children }) {
   const [
@@ -377,7 +373,6 @@ function PlacesProvider({ children }) {
     iconUrl: "https://cdn-icons-png.flaticon.com/128/149/149059.png",
     iconSize: [38, 38],
   });
-
 
   return (
     <PlacesContext.Provider

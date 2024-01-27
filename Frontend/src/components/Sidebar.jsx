@@ -19,7 +19,12 @@ function Sidebar() {
     return (
       <i
         className="fa-solid fa-bars flex"
-        style={{ marginRight: "20px", color: "black", fontSize: "30px" }}
+        style={{
+          marginRight: "20px",
+          color: "black",
+          fontSize: "30px",
+          position: "relative",
+        }}
         onClick={handleOpen}
       ></i>
     );

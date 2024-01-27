@@ -224,6 +224,7 @@ function Map() {
           })}
           <ChangeCenter position={mapPostion} />
           <DetectClick />
+          <DetectTick />
         </MapContainer>
       </div>
     </>
@@ -236,6 +237,12 @@ function ChangeCenter({ position }) {
   return null;
 }
 
+function DetectTick() {
+  const { setSidebarOpen } = useAuth();
+  useMapEvent({
+    click: (e) => setSidebarOpen(true),
+  });
+}
 function DetectClick() {
   const navigate = useNavigate();
 
