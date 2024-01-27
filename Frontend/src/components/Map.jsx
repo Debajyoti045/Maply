@@ -48,7 +48,7 @@ function Map() {
     otherLocationIcon,
     pinDeleteByUser,
   } = usePlaces();
-  const { isAdmin } = useAuth();
+  const { isAdmin,sidebarClicked } = useAuth();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -120,6 +120,7 @@ function Map() {
   return (
     <div className={`${styles.mapContainer}`}>
       <Button
+        style={{visibality:sidebarClicked?"hidden":"visible"}}
         type="position"
         onClick={() => {
           getPosition();

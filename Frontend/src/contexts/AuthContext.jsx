@@ -37,7 +37,7 @@ function AuthProvider({ children }) {
   const [reqNav, setReqNav] = useState(false);
   const { fetchPlaces, getPinLocation } = usePlaces();
   const [isNotification, setIsNotification] = useState(false);
-
+  const [sidebarClicked,setsidebarClicked] = useState(true);
   async function login(email, password) {
     const Response = await fetch(`${BASE_URL}api/authUser/login`, {
       method: "POST",
@@ -130,6 +130,8 @@ function AuthProvider({ children }) {
         loginAdmin,
         logout,
         createUser,
+        sidebarClicked,
+        setsidebarClicked
       }}
     >
       {children}

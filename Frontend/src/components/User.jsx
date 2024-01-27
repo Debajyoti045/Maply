@@ -8,7 +8,7 @@ function User() {
   const { user, logout, isAdmin, setIsNotification } = useAuth();
   const navigate = useNavigate();
   const { fetchReqLocations } = usePlaces();
-
+  const {sidebarClicked} = useAuth();
   function handleNotification() {
     fetchReqLocations();
     setIsNotification(true);
@@ -22,7 +22,7 @@ function User() {
   
 
   return (
-    <div className={styles.user}>
+    <div className={styles.user} style={{display:!sidebarClicked?"none":"block"}}>
       {isAdmin && (
         <NavLink to="requestedLocations">
           <button
