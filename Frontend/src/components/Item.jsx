@@ -29,7 +29,7 @@ function Item({ currentPlace }) {
         to={`${_id}?lat=${latitude}&lng=${longitude}`}
       >
         <h3 className={styles.name}>{name}</h3>
-        <time className={styles.date}>({formatDate(date)})</time>
+        {/* <time className={styles.date}>({formatDate(date)})</time> */}
         {isAdmin && !isNotification &&  (
           <button className={styles.deleteBtn} onClick={handleDelete}>
             x

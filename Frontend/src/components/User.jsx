@@ -3,12 +3,10 @@ import { useAuth } from "../contexts/AuthContext";
 import styles from "./User.module.css";
 import { usePlaces } from "../contexts/PlacesContext";
 
-
 function User() {
-  const { user, logout, isAdmin, setIsNotification } = useAuth();
+  const { user, logout, isAdmin, setIsNotification, sidebarOpen } = useAuth();
   const navigate = useNavigate();
   const { fetchReqLocations } = usePlaces();
-  const {sidebarClicked} = useAuth();
   function handleNotification() {
     fetchReqLocations();
     setIsNotification(true);
@@ -19,10 +17,11 @@ function User() {
     navigate("/");
   }
 
-  
-
   return (
-    <div className={styles.user} style={{display:!sidebarClicked?"none":"block"}}>
+    <div
+      className={styles.user}
+      style={{ display: !sidebarOpen ? "block" : "none" }}
+    >
       {isAdmin && (
         <NavLink to="requestedLocations">
           <button

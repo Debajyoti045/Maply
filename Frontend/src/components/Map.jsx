@@ -48,7 +48,7 @@ function Map() {
     otherLocationIcon,
     pinDeleteByUser,
   } = usePlaces();
-  const { isAdmin,sidebarClicked } = useAuth();
+  const { isAdmin, sidebarOpen } = useAuth();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -119,16 +119,17 @@ function Map() {
 
   return (
     <div className={`${styles.mapContainer}`}>
-      <Button
-        style={{visibality:sidebarClicked?"hidden":"visible"}}
-        type="position"
-        onClick={() => {
-          getPosition();
-          setFlag(true);
-        }}
-      >
-        {isLoadingPosition ? "Loading..." : "Use Your Position"}
-      </Button>
+      {!sidebarOpen && (
+        <Button
+          type="position"
+          onClick={() => {
+            getPosition();
+            setFlag(true);
+          }}
+        >
+          {isLoadingPosition ? "Loading..." : "Use Your Position"}
+        </Button>
+      )}
       <MapContainer
         center={mapPostion}
         zoom={16}
@@ -203,7 +204,11 @@ function Map() {
               <Popup>
                 <div>
                   <img
-                    src={place.imageUrl[0]?place.imageUrl[0]:"https://qph.cf2.quoracdn.net/main-qimg-cfb6d15975e70f0dc4e40b43d125bc67-pjlq"}
+                    src={
+                      place.imageUrl[0]
+                        ? place.imageUrl[0]
+                        : "https://qph.cf2.quoracdn.net/main-qimg-cfb6d15975e70f0dc4e40b43d125bc67-pjlq"
+                    }
                     alt="place"
                     style={{ width: "100px", height: "100px" }}
                   />

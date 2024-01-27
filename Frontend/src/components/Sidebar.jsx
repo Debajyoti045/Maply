@@ -7,27 +7,31 @@ import { useAuth } from "../contexts/AuthContext";
 import ReqNav from "./ReqNav";
 
 function Sidebar() {
-  const handleClick = ()=>{
-      setsidebarClicked(!sidebarClicked);
-  }
-  const { reqNav, isAdmin,isAuthenticated } = useAuth();
-  const {sidebarClicked,setsidebarClicked} = useAuth();
+  const handleClick = () => {
+    setSidebarOpen(!sidebarOpen);
+  };
+  const { reqNav, isAdmin } = useAuth();
+  const { sidebarOpen, setSidebarOpen } = useAuth();
   return (
     <>
-    {
-      isAuthenticated && <i className="fa-solid fa-bars" style={{marginRight:"20px",color:"black",fontSize:"30px"}} onClick={handleClick}></i>
-    }
-    <div className={styles.sidebar} style={{display:sidebarClicked?"none":"block"}}>
-      <Logo />
-      <SearchPosts />
-      {!isAdmin ? <AppNav /> : reqNav ? <ReqNav /> : <AppNav />}
-      <Outlet />
-      <footer className={styles.footer}>
-        <p className={styles.copyright}>
-          @ Copyright {new Date().getFullYear} by Maply Inc.
-        </p>
-      </footer>
-    </div>
+      <i
+        className="fa-solid fa-bars"
+        style={{ marginRight: "20px", color: "black", fontSize: "30px" }}
+        onClick={handleClick}
+      ></i>
+      <div
+        className={styles.sidebar}
+        style={{ display: sidebarOpen ? "block" : "none" }}
+      >
+        <SearchPosts />
+        {!isAdmin ? <AppNav /> : reqNav ? <ReqNav /> : <AppNav />}
+        <Outlet />
+        <footer className={`${styles.footer} text-center`}>
+          <p className={styles.copyright}>
+            @ Copyright {new Date().getFullYear} by Maply Inc.
+          </p>
+        </footer>
+      </div>
     </>
   );
 }

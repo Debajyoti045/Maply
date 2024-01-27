@@ -37,7 +37,7 @@ function AuthProvider({ children }) {
   const [reqNav, setReqNav] = useState(false);
   const { fetchPlaces, getPinLocation } = usePlaces();
   const [isNotification, setIsNotification] = useState(false);
-  const [sidebarClicked,setsidebarClicked] = useState(true);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
   async function login(email, password) {
     const Response = await fetch(`${BASE_URL}api/authUser/login`, {
       method: "POST",
@@ -59,9 +59,9 @@ function AuthProvider({ children }) {
       });
       await fetchPlaces();
       await getPinLocation();
-      alert("Logged In Successfully!")
+      alert("Logged In Successfully!");
     } else {
-      alert(res.msg)
+      alert(res.msg);
     }
   }
   async function loginAdmin(email, password) {
@@ -84,9 +84,9 @@ function AuthProvider({ children }) {
         },
       });
       await fetchPlaces();
-      alert("Logged in successfully")
+      alert("Logged in successfully");
     } else {
-      alert(res.msg)
+      alert(res.msg);
     }
   }
 
@@ -130,8 +130,8 @@ function AuthProvider({ children }) {
         loginAdmin,
         logout,
         createUser,
-        sidebarClicked,
-        setsidebarClicked
+        sidebarOpen,
+        setSidebarOpen,
       }}
     >
       {children}
