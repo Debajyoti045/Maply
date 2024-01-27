@@ -10,7 +10,7 @@ function RequestPlaces() {
 
   if (isLoading) return <Spinner />;
   if (!requestedLocations?.length)
-    return <h2>No Request Place Available !!</h2>;
+    return <h2 className="text-center">No Request Place Available !!</h2>;
 
   return isAdmin ? <List commonLocation={requestedLocations} /> : <h1>PLz enter in admin Mode</h1>;
 }

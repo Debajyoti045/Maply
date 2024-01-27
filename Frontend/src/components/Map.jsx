@@ -22,7 +22,7 @@ import { useAuth } from "../contexts/AuthContext";
 function Map() {
   const { places } = usePlaces();
   const [mapPostion, setMapPosition] = useState([
-    23.841112178011606, 91.42143033325355,
+    23.84192198628121, 91.42878705592989,
   ]);
   const [mapLat, mapLng] = useUrlPosition();
   const [showPolyLine, setShowPolyLine] = useState(false);
@@ -118,113 +118,115 @@ function Map() {
   }
 
   return (
-    <div className={`${styles.mapContainer}`}>
-      {!sidebarOpen && (
-        <Button
-          type="position"
-          onClick={() => {
-            getPosition();
-            setFlag(true);
-          }}
-        >
-          {isLoadingPosition ? "Loading..." : "Use Your Position"}
-        </Button>
-      )}
-      <MapContainer
-        center={mapPostion}
-        zoom={16}
-        scrollWheelZoom={true}
-        className={styles.map}
-      >
-        <Marker icon={presentLocationIcon} position={mapPostion}></Marker>
-
-        {route && showPolyLine && (
-          <Polyline
-            positions={route.map((coord) => [coord[1], coord[0]])}
-            color="blue"
-          />
+    <>
+      <div className={`${styles.mapContainer}`}>
+        {!sidebarOpen && (
+          <Button
+            type="position"
+            onClick={() => {
+              getPosition();
+              setFlag(true);
+            }}
+          >
+            {isLoadingPosition ? "Loading..." : "Use Your Position"}
+          </Button>
         )}
-        <TileLayer
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        />
-        {!isAdmin &&
-          pinLocation?.map((oneLoc, i) => {
+        <MapContainer
+          center={mapPostion}
+          zoom={16}
+          scrollWheelZoom={true}
+          className={styles.map}
+        >
+          <Marker icon={presentLocationIcon} position={mapPostion}></Marker>
+
+          {route && showPolyLine && (
+            <Polyline
+              positions={route.map((coord) => [coord[1], coord[0]])}
+              color="blue"
+            />
+          )}
+          <TileLayer
+            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          />
+          {!isAdmin &&
+            pinLocation?.map((oneLoc, i) => {
+              return (
+                <Marker
+                  key={i}
+                  icon={pinLocationIcon}
+                  position={[oneLoc.latitude, oneLoc.longitude]}
+                >
+                  <Tooltip>
+                    <span>{oneLoc.name}</span>
+                  </Tooltip>
+                  <Popup>
+                    <div>
+                      <div>
+                        <i
+                          className="fa-solid fa-trash-can"
+                          onClick={() => handlePinDelete(oneLoc)}
+                        ></i>
+                        <span style={{ color: "yellow" }} className="mx-3">
+                          {oneLoc.name}
+                        </span>
+                      </div>
+                      <span>{oneLoc.message}</span>
+                    </div>
+                  </Popup>
+                </Marker>
+              );
+            })}
+          {flag && geolocationPosition && (
+            <Marker
+              icon={presentLocationIcon}
+              position={geolocationPosition}
+            ></Marker>
+          )}
+          {places?.map((place) => {
+            const icon =
+              place.latitude !== mapPostion[0]
+                ? getMarkerIcon(place.type)
+                : presentLocationIcon;
             return (
               <Marker
-                key={i}
-                icon={pinLocationIcon}
-                position={[oneLoc.latitude, oneLoc.longitude]}
+                icon={icon}
+                position={[place.latitude, place.longitude]}
+                key={place._id}
+                eventHandlers={{
+                  click: (e) => {
+                    handleDestination(e);
+                  },
+                }}
               >
                 <Tooltip>
-                  <span>{oneLoc.name}</span>
+                  <span>{place.name}</span>
                 </Tooltip>
                 <Popup>
                   <div>
-                    <div>
-                      <i
-                        className="fa-solid fa-trash-can"
-                        onClick={() => handlePinDelete(oneLoc)}
-                      ></i>
-                      <span style={{ color: "yellow" }} className="mx-3">
-                        {oneLoc.name}
-                      </span>
-                    </div>
-                    <span>{oneLoc.message}</span>
+                    <img
+                      src={
+                        place.imageUrl[0]
+                          ? place.imageUrl[0]
+                          : "https://qph.cf2.quoracdn.net/main-qimg-cfb6d15975e70f0dc4e40b43d125bc67-pjlq"
+                      }
+                      alt="place"
+                      style={{ width: "100px", height: "100px" }}
+                    />
+                    <span>{place.name}</span>
+                    <Button type="primary" onClick={handleCurrentLocation}>
+                      &#8680;
+                    </Button>
                   </div>
                 </Popup>
               </Marker>
             );
           })}
-        {flag && geolocationPosition && (
-          <Marker
-            icon={presentLocationIcon}
-            position={geolocationPosition}
-          ></Marker>
-        )}
-        {places?.map((place) => {
-          const icon =
-            place.latitude !== mapPostion[0]
-              ? getMarkerIcon(place.type)
-              : presentLocationIcon;
-          return (
-            <Marker
-              icon={icon}
-              position={[place.latitude, place.longitude]}
-              key={place._id}
-              eventHandlers={{
-                click: (e) => {
-                  handleDestination(e);
-                },
-              }}
-            >
-              <Tooltip>
-                <span>{place.name}</span>
-              </Tooltip>
-              <Popup>
-                <div>
-                  <img
-                    src={
-                      place.imageUrl[0]
-                        ? place.imageUrl[0]
-                        : "https://qph.cf2.quoracdn.net/main-qimg-cfb6d15975e70f0dc4e40b43d125bc67-pjlq"
-                    }
-                    alt="place"
-                    style={{ width: "100px", height: "100px" }}
-                  />
-                  <span>{place.name}</span>
-                  <Button type="primary" onClick={handleCurrentLocation}>
-                    &#8680;
-                  </Button>
-                </div>
-              </Popup>
-            </Marker>
-          );
-        })}
-        <ChangeCenter position={mapPostion} />
-        <DetectClick />
-      </MapContainer>
-    </div>
+          <ChangeCenter position={mapPostion} />
+          <DetectClick />
+        </MapContainer>
+      </div>
+    </>
   );
 }
 

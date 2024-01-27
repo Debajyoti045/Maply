@@ -9,7 +9,7 @@ function Hostels() {
   });
 
   if (isLoading) return <Spinner />;
-  if (!hostels?.length) return <h2>No Hostles Available !!</h2>;
+  if (!hostels?.length) return <h2 className="text-center">No Hostels Available !!</h2>;
 
   return <List commonLocation={hostels} />;
 }

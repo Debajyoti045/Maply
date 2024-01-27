@@ -9,7 +9,7 @@ function Others() {
   });
 
   if (isLoading) return <Spinner />;
-  if (!others?.length) return <h2>No Other Place Available !!</h2>;
+  if (!others?.length) return <h2 className="text-center">No Other Place Available !!</h2>;
 
   return <List commonLocation={others} />;
 }

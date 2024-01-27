@@ -9,7 +9,7 @@ function Playgrounds() {
   });
 
   if (isLoading) return <Spinner />;
-  if (!playgrounds?.length) return <h2>No Playgrounds Available !!</h2>;
+  if (!playgrounds?.length) return <h2 className="text-center">No Playgrounds Available !!</h2>;
 
   return <List commonLocation={playgrounds} />;
 }

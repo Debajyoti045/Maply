@@ -9,7 +9,8 @@ function Departments() {
   });
 
   if (isLoading) return <Spinner />;
-  if (!departments?.length) return <h2>No Departments Available !!</h2>;
+  if (!departments?.length)
+    return <h2 className="text-center">No Departments Available !!</h2>;
 
   return <List commonLocation={departments} />;
 }

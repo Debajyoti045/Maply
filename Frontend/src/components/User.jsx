@@ -4,12 +4,20 @@ import styles from "./User.module.css";
 import { usePlaces } from "../contexts/PlacesContext";
 
 function User() {
-  const { user, logout, isAdmin, setIsNotification, sidebarOpen } = useAuth();
+  const {
+    user,
+    logout,
+    isAdmin,
+    setIsNotification,
+    sidebarOpen,
+    setSidebarOpen,
+  } = useAuth();
   const navigate = useNavigate();
   const { fetchReqLocations } = usePlaces();
   function handleNotification() {
     fetchReqLocations();
     setIsNotification(true);
+    setSidebarOpen(true);
   }
 
   function handleClick() {
