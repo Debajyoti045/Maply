@@ -62,8 +62,8 @@ function reducer(state, action) {
   }
 }
 
-// const BASE_URL = "http://localhost:3000/";
-const BASE_URL = "https://maply.onrender.com/";
+ const BASE_URL = "http://localhost:3000/";
+//const BASE_URL = "https://maply.onrender.com/";
 
 function PlacesProvider({ children }) {
   const [

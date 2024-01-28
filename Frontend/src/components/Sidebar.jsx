@@ -18,12 +18,14 @@ function Sidebar() {
   if (!sidebarOpen)
     return (
       <i
-        className="fa-solid fa-bars flex"
+        className="fa-solid fa-bars hamburger-icon"
         style={{
-          marginRight: "20px",
           color: "black",
           fontSize: "30px",
-          position: "relative",
+          position: "absolute",
+          zIndex: "100000",
+          padding: "2rem",
+          backgroundColor: "#ffffffcc"
         }}
         onClick={handleOpen}
       ></i>
