@@ -2,6 +2,9 @@ import { useNavigate } from "react-router-dom";
 import styles from "./Map.module.css";
 import "leaflet/dist/leaflet.css";
 import axios from "axios";
+// ankit added
+import { CopyToClipboard } from "react-copy-to-clipboard";
+import { FiCopy } from "react-icons/fi"; 
 import {
   MapContainer,
   Marker,
@@ -30,9 +33,11 @@ function Map() {
   const [userLocation, setUserLocation] = useState(null);
   const [route, setRoute] = useState(null);
   const [destination, setDestination] = useState(null);
+  // ankit added
+  const [copied, setCopied] = useState(false);
+
 
   const {
-    isLoading: isLoadingPosition,
     position: geolocationPosition,
     getPosition,
   } = useGeolocation();
@@ -48,7 +53,14 @@ function Map() {
     otherLocationIcon,
     pinDeleteByUser,
   } = usePlaces();
+
   const { isAdmin, sidebarOpen } = useAuth();
+  // sharable link
+  const generateShareLink = () => {
+    const currentLocation = userLocation || mapPostion;
+    const shareLink = `${window.location.origin}/share?lat=${currentLocation[0]}&lng=${currentLocation[1]}`;
+    return shareLink;
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -119,18 +131,26 @@ function Map() {
 
   return (
     <>
-      <div className={`${styles.mapContainer}`}>
-        {!sidebarOpen && (
-          <Button
-            type="position"
-            onClick={() => {
+        {!sidebarOpen && (<div style={{display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
+
+      
+          <CopyToClipboard text={generateShareLink()} onCopy={() => {
+            setCopied(!copied)
+            }}>
+                <Button type="position"  onClick={() => {
               getPosition();
               setFlag(true);
-            }}
-          >
-            {isLoadingPosition ? "Loading..." : "Use Your Position"}
-          </Button>
+            }}>
+                {copied ? "Link Copied!" : "Share Location"}
+                <FiCopy style={{ marginLeft: "5px" }} />
+                </Button>
+          </CopyToClipboard>
+    
+        </div>
+      
+          
         )}
+      <div className={`${styles.mapContainer}`}>
         <MapContainer
           center={mapPostion}
           zoom={16}
