@@ -1,6 +1,5 @@
 import { Icon } from "leaflet";
 import { createContext, useContext, useReducer, useState } from "react";
-
 const PlacesContext = createContext();
 
 const initialState = {
@@ -62,8 +61,7 @@ function reducer(state, action) {
   }
 }
 
-//  const BASE_URL = "http://localhost:3000/";
-const BASE_URL = "https://maply.onrender.com/";
+  const BASE_URL = import.meta.env.VITE_Render_Url
 
 function PlacesProvider({ children }) {
   const [
