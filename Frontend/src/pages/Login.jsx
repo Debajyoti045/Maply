@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useAuth } from "../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
 import Button from "../components/Button";
+import { useTranslation } from "react-i18next";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -13,10 +14,12 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const { login, isAuthenticated } = useAuth();
   const [userType, setUserType] = useState("user");
-
+  
+  
   function handleSubmit(e) {
+    
     e.preventDefault();
-
+    
     if (email && password) {
       if (userType === "admin") {
         loginAdmin(email, password);
@@ -28,12 +31,15 @@ export default function Login() {
 
   useEffect(
     function () {
+      
       if (isAuthenticated) navigate("/app", { replace: true });
     },
     [isAuthenticated, navigate]
-  );
-
-  return (
+    );
+    
+    const { t } = useTranslation();
+    return (
+    
     <main className={styles.login}>
       <div>
         <PageNav />
@@ -46,15 +52,15 @@ export default function Login() {
           value={userType}
           onChange={(e) => setUserType(e.target.value)}
         >
-          <option value="user">User</option>
-          <option value="admin">Admin</option>
+          <option value="user">{t("login_page.user")}</option>
+          <option value="admin">{t("login_page.admin")}</option>
         </select>
         <div className={styles.row}>
-          <label htmlFor="email">Email address</label>
+          <label htmlFor="email">{t("login_page.email")}</label>
           <input
             type="email"
             id="email"
-            placeholder="Enter your Email Address"
+            placeholder={t("login_page.emailPlaceholder")}
             onChange={(e) => setEmail(e.target.value)}
             value={email}
             required
@@ -62,12 +68,12 @@ export default function Login() {
         </div>
 
         <div className={styles.row}>
-          <label htmlFor="password">Password</label>
+          <label htmlFor="password"> {t("login_page.password")}</label>
           <input
             type="password"
             id="password"
             minLength={7}
-            placeholder="Enter your password"
+            placeholder={t("login_page.passwordPlaceholder")}
             required
             onChange={(e) => setPassword(e.target.value)}
             value={password}
@@ -75,7 +81,7 @@ export default function Login() {
         </div>
 
         <div>
-          <Button type="primary">Login</Button>
+          <Button type="primary">{t("login_page.login")}</Button>
         </div>
       </form>
     </main>

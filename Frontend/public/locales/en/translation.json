@@ -1,0 +1,94 @@
+{
+  "home": {
+    "start_tracking": "START TRACKING NOW",
+    "banner_text_1": "You travel the NIT Agartala.",
+    "banner_text_2": "Maply will guide you at every step in this adventure.",
+    "sub_text_1": "A very userFriendly Map."
+  },
+  "button": {
+    "login": "login",
+    "signup": "signup"
+  },
+  "signup_page": {
+    "name": "Name",
+    "namePlaceholder": "Enter your name",
+    "email": "Email address",
+    "emailPlaceholder": "Enter your Email Address",
+    "password": "Password",
+    "passwordPlaceholder": "Enter your password",
+    "signup": "SIGNUP"
+  },
+
+  "login_page": {
+    "user": "User",
+    "admin": "Admin",
+    "email": "Email address",
+    "emailPlaceholder": "Enter your Email Address",
+    "password": "Password",
+    "passwordPlaceholder": "Enter your password",
+    "login": "LOGIN"
+  },
+  "user": {
+    "notifications": " Notifications",
+    "welcome": "Welcome,",
+    "logout": "Logout"
+  },
+  "restaurants": {
+    "restaurant": "No Restaurants Available !!"
+  },
+  "requestplace": {
+    "request": "No Request Place Available !!",
+    "location": "Please enter in admin Mode"
+  },
+  "reqnav": {
+    "req": "All Requested Location"
+  },
+  "hostels": {
+    "hos": "No Hostels Available !!"
+  },
+  "department": {
+    "dep": "No Departments Available !!"
+  },
+  "options": {
+    "dep": "Department",
+    "hos": "Hostel",
+    "res": "Restaurant",
+    "play": "Playground",
+    "oth": "Other",
+    "butt": "Pin Location",
+    "label1": "Choose Type",
+    "label2": "Place name"
+  },
+  "backbutton": {
+    "back": "Back"
+  },
+  "appnav": {
+    "all": "All",
+    "dep": "Departments",
+    "res": "Restaurants",
+    "hos": "Hostels",
+    "play": "PlayGrounds",
+    "oth": "Others"
+  },
+  "alllist": {
+    "h": "No Places Available !!"
+  },
+  "list": {
+    "h": "Requested Locations"
+  },
+  "others": {
+    "oth": "No Other Place Available !!"
+  },
+  "placedetail": {
+    "h1": "Place name",
+    "h2": "Type",
+    "butt1": "Acept",
+    "butt2": "Reject"
+  },
+  "search":
+  {
+    "search1":"Search Places..."
+  }
+  
+  
+}

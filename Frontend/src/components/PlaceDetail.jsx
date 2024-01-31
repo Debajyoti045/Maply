@@ -6,6 +6,7 @@ import { useAuth } from "../contexts/AuthContext";
 import Button from "./Button";
 import { useUrlPosition } from "../hooks/useUrlPosition";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const formatDate = (date) =>
   new Intl.DateTimeFormat("en", {
@@ -56,15 +57,16 @@ function PlaceDetail() {
   }
 
   if (isLoading) return <Spinner />;
+  const {t} = useTranslation();
 
   return (
     <div className={styles.place}>
       <div className={styles.row}>
-        <h6>Place name</h6>
+        <h6>{t("placedetail.h1")}</h6>
         <h3>{curP?.name}</h3>
       </div>
       <div className={styles.row}>
-        <h6>Type</h6>
+        <h6>{t("placedetail.h2")}</h6>
         <h3>{curP?.type}</h3>
       </div>
 
@@ -76,12 +78,12 @@ function PlaceDetail() {
       <div className={styles.buttons}>
         {isAdmin && isNotification && (
           <Button type="primary" onClick={handleAccept}>
-            Accept
+            {t("placedetail.butt1")}
           </Button>
         )}
         {isAdmin && isNotification && (
           <Button type="danger" onClick={handleReject}>
-            Reject
+            {t("placedetail.butt2")}
           </Button>
         )}
         <BackButton />

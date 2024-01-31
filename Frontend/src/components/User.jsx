@@ -2,6 +2,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 import styles from "./User.module.css";
 import { usePlaces } from "../contexts/PlacesContext";
+import { useTranslation } from "react-i18next";
 
 function User() {
   const {
@@ -24,6 +25,7 @@ function User() {
     logout();
     navigate("/");
   }
+  const { t } = useTranslation();
 
   return (
     <div
@@ -37,19 +39,19 @@ function User() {
             className="btn btn-primary focus"
             onClick={handleNotification}
           >
-            Notifications
+             {t("user.notifications")}
           </button>
         </NavLink>
       )}
 
       <img src={user?.imageUrl} alt={user?.name} />
-      <span>Welcome, {user?.name}</span>
+      <span>{t("user.welcome")} {user?.name}</span>
       <button
         type="button"
         className="btn btn-primary focus"
         onClick={handleClick}
       >
-        Logout
+        {t("user.logout")}
       </button>
     </div>
   );

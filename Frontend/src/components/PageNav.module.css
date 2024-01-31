@@ -19,17 +19,16 @@
     font-size: 1.5rem;
     font-weight: 600;
   }
-  
   /* CSS Modules feature */
   .nav a:global(.active) {
     color: var(--color-brand--2);
   }
-  
   a.ctaLink:link,
   a.ctaLink:visited {
     background-color: var(--color-brand--2);
     color: var(--color-dark--0);
     padding: 0.8rem 2rem;
     border-radius: 7px;
+    white-space: nowrap;
   }
   

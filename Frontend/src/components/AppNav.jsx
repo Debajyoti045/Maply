@@ -1,9 +1,11 @@
 import { NavLink } from "react-router-dom";
 import styles from "./AppNav.module.css";
 import { useAuth } from "../contexts/AuthContext";
+import { useTranslation } from "react-i18next";
 
 function AppNav() {
   const { setIsNotification } = useAuth();
+  const {t} = useTranslation();
 
   function handleClick() {
     setIsNotification(false);
@@ -13,22 +15,22 @@ function AppNav() {
     <nav className={styles.nav}>
       <ul onClick={handleClick}>
         <li>
-          <NavLink to="all">All</NavLink>
+          <NavLink to="all">{t("appnav.all")}</NavLink>
         </li>
         <li>
-          <NavLink to="departments">Departments</NavLink>
+          <NavLink to="departments">{t("appnav.dep")}</NavLink>
         </li>
         <li>
-          <NavLink to="restaurants">Restaurants</NavLink>
+          <NavLink to="restaurants">{t("appnav.res")}</NavLink>
         </li>
         <li>
-          <NavLink to="hostels">Hostels</NavLink>
+          <NavLink to="hostels">{t("appnav.hos")}</NavLink>
         </li>
         <li>
-          <NavLink to="playgrounds">PlayGrounds</NavLink>
+          <NavLink to="playgrounds">{t("appnav.play")}</NavLink>
         </li>
         <li>
-          <NavLink to="others">Others</NavLink>
+          <NavLink to="others">{t("appnav.oth")}</NavLink>
         </li>
       </ul>
     </nav>

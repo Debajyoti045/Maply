@@ -11,6 +11,7 @@ import Message from "./Message";
 import Spinner from "./Spinner";
 import { usePlaces } from "../contexts/PlacesContext";
 import { useAuth } from "../contexts/AuthContext";
+import { useTranslation } from "react-i18next";
 
 const BASE_URL = "https://api.bigdatacloud.net/data/reverse-geocode-client";
 
@@ -38,7 +39,6 @@ function Form() {
             `${BASE_URL}?latitude=${latitude}&longitude=${longitude}`
           );
           const data = await res.json();
-          // console.log(data);
           if (!data.countryCode)
             throw new Error(
               "🤨That doesn't seem to be a Valid Location. Plz Click somewhere else 🫠"
@@ -53,7 +53,6 @@ function Form() {
     },
     [latitude, longitude]
   );
-
 
   async function handleReqAddPlace(e) {
     e.preventDefault();
@@ -78,11 +77,12 @@ function Form() {
     return <Message message="Start by clicking somewhere in the map" />;
 
   if (geoCodingError) return <Message message={geoCodingError} />;
+  const { t } = useTranslation();
 
   return (
     <form className={`${styles.form} ${isLoading ? styles.loading : ""}`}>
       <div className={styles.row}>
-        <label htmlFor="name">Place name</label>
+        <label htmlFor="name">{t("options.label2")}</label>
         <input
           id="name"
           required
@@ -91,7 +91,7 @@ function Form() {
         />
       </div>
       <div className={styles.row}>
-        <label htmlFor="type">Choose Type</label>
+        <label htmlFor="type">{t("options.label1")}</label>
         <select
           onChange={(e) => setType(e.target.value)}
           value={type}
@@ -99,11 +99,11 @@ function Form() {
           id="cars"
         >
           <option>--Select Type--</option>
-          <option value="department">Department</option>
-          <option value="hostel">Hostel</option>
-          <option value="restaurant">Restaurant</option>
-          <option value="playground">Playground</option>
-          <option value="others">Other</option>
+          <option value="department">{t("options.dep")}</option>
+          <option value="hostel">{t("options.hos")}</option>
+          <option value="restaurant">{t("options.res")}</option>
+          <option value="playground">{t("options.play")}</option>
+          <option value="others">{t("options.oth")}</option>
         </select>
       </div>
 
@@ -123,7 +123,7 @@ function Form() {
         </Button>
         {!isAdmin && (
           <Button type="primary" onClick={handlePinPlace}>
-            Pin Location
+            {t("options.butt")}
           </Button>
         )}
         <BackButton />
