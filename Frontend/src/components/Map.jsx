@@ -58,7 +58,7 @@ function Map() {
   // sharable link
   const generateShareLink = () => {
     const currentLocation = userLocation || mapPostion;
-    const shareLink = `${window.location.origin}/share?lat=${currentLocation[0]}&lng=${currentLocation[1]}`;
+    const shareLink = `${window.location.origin}/app/form?lat=${currentLocation[0]}&lng=${currentLocation[1]}`;
     return shareLink;
   };
 

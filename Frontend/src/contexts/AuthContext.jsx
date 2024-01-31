@@ -1,6 +1,5 @@
 import { createContext, useContext, useReducer, useState } from "react";
 import { usePlaces } from "./PlacesContext";
-
 const AuthContext = createContext();
 
 const initialState = {
@@ -27,9 +26,7 @@ function reducer(state, action) {
   }
 }
 
- const BASE_URL = "http://localhost:3000/";
-//const BASE_URL = "https://maply.onrender.com/";
-
+ const BASE_URL = import.meta.env.VITE_Render_Url
 function AuthProvider({ children }) {
   const [{ user, isAuthenticated, isAdmin }, dispatch] = useReducer(
     reducer,
