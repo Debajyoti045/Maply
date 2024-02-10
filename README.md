@@ -66,7 +66,12 @@ Run the following command in your terminal to install the required dependencies.
 ```bash
   npm i
 ```
-4.Run Development Server:
+4.Make a .env file:
+ 
+```bash
+   VITE_Render_Url = "http://localhost:3000/"
+```
+5.Run Development Server:
 
 Execute the following command to start the development server.
 
@@ -76,15 +81,22 @@ Execute the following command to start the development server.
 
 **To Setup Backend on Your Machine :** 
 
- 5.Install Dependencies:
+ 6.Install Dependencies:
 
 Run the following command in your terminal to install the required dependencies..
 
 ```bash
   npm i
 ```
+ 7.Make a .env file:
 
- 6.Start Backend Server:
+
+```bash
+    VITE_MONGOURL="Enter your MongoDB atlas connection url"
+    SECRET_KEY="Enter your Secret Key for jwt token"
+```
+
+ 8.Start Backend Server:
 
 Execute the following command to launch the backend server.
 
