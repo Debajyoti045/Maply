@@ -115,10 +115,6 @@ Execute the following command to launch the backend server.
 
 ![Login_Page](https://github.com/Debajyoti045/Maply/assets/109648585/7b964ad5-2f60-49ad-a27e-2ebcddb93ce6)
 
-![path_feature](https://github.com/Debajyoti045/Maply/assets/109648585/9d235afe-2e5d-4b22-a06b-aa581eeb3966)
-![map_webpage](https://github.com/Debajyoti045/Maply/assets/109648585/90d31e39-6633-4ef3-b057-98ca16e3e71c)
-![feature](https://github.com/Debajyoti045/Maply/assets/109648585/15fff8f1-0581-41d0-abe2-d98229003586)
-![notification_admin](https://github.com/Debajyoti045/Maply/assets/109648585/28969b39-0f4f-40cf-845d-0ae5b857d55c)
 
 ## Github Profile - Links
 
