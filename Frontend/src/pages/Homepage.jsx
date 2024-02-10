@@ -20,23 +20,23 @@ function HomePage() {
           Start Tracking Now
         </Link>
       </section>
-      
+      </main>
       <footer className={styles.footer}>
 
         <div className={styles.socialIcons}>
-          <a href="https://www.linkedin.com/in/ankit-kum/">
-            <i class="fa-brands fa-linkedin"></i>
+          <a href="https://www.linkedin.com/in/ankit-kum/" target="_blank">
+            <i className="fa-brands fa-linkedin"></i>
           </a>
-          <a href="#">
+          <a href="https://twitter.com/AnkitKu06345134" target="_blank">
             <i className="fa-brands fa-twitter"></i>
           </a>
-          <a href="#">
+          <a href="https://www.facebook.com/profile.php?id=100084070718214" target="_blank">
             <i className="fa-brands fa-facebook"></i>
           </a>
-          <a href="#">
+          <a href="https://www.instagram.com/vidyasagar_26/" target="_blank">
             <i className="fa-brands fa-instagram"></i>
           </a>
-          <a href="#">
+          <a href="https://www.youtube.com/@FAANG.smashers" target="_blank">
             <i className="fa-brands fa-youtube"></i>
           </a>
           
@@ -51,9 +51,6 @@ function HomePage() {
           </p>
         </div>
       </footer>
-
-      
-    </main>
     </div>
   );
 }

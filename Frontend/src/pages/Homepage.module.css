@@ -1,6 +1,11 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 .homepage {
     height: calc(100vh - 5rem);
-    margin: 2.5rem;
+    /* margin: 2.5rem; */
     background-image: linear-gradient(rgba(36, 42, 46, 0.8),
         rgba(36, 42, 46, 0.8)),
       url("../NITA_Image.jpg");
@@ -62,7 +67,7 @@
   }
   .homepage {
     height: calc(100vh - 5rem);
-    margin: 2.5vw;
+    /* margin: 2.5vw; */
     padding: 2.5vh 5vw;
   }
   .homepage h1 {
